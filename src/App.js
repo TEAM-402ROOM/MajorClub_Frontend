@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "reset.css";
-import Header from "./Header";
+import "./reset.css";
+import { Header } from "./components/index";
 
 const App = () => {
   return (
