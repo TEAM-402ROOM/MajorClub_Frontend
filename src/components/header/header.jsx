@@ -38,6 +38,7 @@ const Column = styled.div`
   padding-left: 177px;
   padding-right: 177px;
   height: 80px;
+  background-color: #fff;
 `;
 
 const LinkTo = styled(Link)`
