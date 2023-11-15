@@ -21,6 +21,7 @@ const Main = () => {
 const Box = styled.div`
   width: 1086.692px;
   margin: auto;
+  padding-top: 27px;
 `;
 
 const MenuText = styled.div`

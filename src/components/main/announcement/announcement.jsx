@@ -3,21 +3,29 @@ import styled from "styled-components";
 
 const Announcement = () => {
   return (
-    <AnnBox>
-      <AnnTitle>ㅈ망했노</AnnTitle>
-      <AnnDay>2022.21.23</AnnDay>
-    </AnnBox>
+    <>
+      <AnnBox>
+        <AnnTitle>ㅈ망했노</AnnTitle>
+        <AnnDay>2022.21.23</AnnDay>
+      </AnnBox>
+      <AnnBox>
+        <AnnTitle>ㅈ망했노</AnnTitle>
+        <AnnDay>2022.21.23</AnnDay>
+      </AnnBox>
+    </>
   );
 };
 
 const AnnBox = styled.div`
   display: flex;
   width: 1080px;
-  height: 100px;
   padding: 34.5px 36.29px 34.5px 32.551px;
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
+  border-radius: 5px;
+  background: #fff;
+  margin-top: 15px;
 `;
 
 const AnnTitle = styled.div`
