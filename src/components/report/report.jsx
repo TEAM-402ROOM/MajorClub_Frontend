@@ -90,6 +90,7 @@ const Report = () => {
       <TextField placeholder="멘토 교사님의 피드백을 입력하세요." />
       <TeacherType m={20}>담당 교사 피드백</TeacherType>
       <TextField placeholder="담당 교사님의 피드백을 입력하세요." />
+      <PostButton>제출하기</PostButton>
     </MainBox>
   );
 };
@@ -105,6 +106,7 @@ const Column = styled.div`
 
 const ColumnSkill = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: start;
   align-items: center;
   width: 840px;
@@ -307,6 +309,27 @@ const TeacherType = styled.div`
   font-weight: 600;
   line-height: normal;
   margin-top: ${(props) => `${props.m}px`};
+`;
+
+const PostButton = styled.div`
+  cursor: pointer;
+  margin: auto;
+  display: flex;
+  margin-top: 81px;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 54px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #000;
+  color: var(--gray-scale-gray-scale-700, #fff);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 91px;
 `;
 
 export default Report;
