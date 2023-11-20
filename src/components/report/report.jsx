@@ -81,6 +81,15 @@ const Report = () => {
           <SkillBox key={index}>{item}</SkillBox>
         ))}
       </ColumnSkill>
+      <ReportFrom>프로젝트 진행사항</ReportFrom>
+      <TextField placeholder="진행사항을 입력해주세요" />
+      <ReportFrom>발생헀던 문제 혹은 어려웠던 점 또는 해결 방안</ReportFrom>
+      <TextField placeholder="발생한 문제 || 어려운점 && 해결방안" />
+      <ReportFrom>피드백 받은 내용</ReportFrom>
+      <TeacherType m={29}>멘토 교사 피드백</TeacherType>
+      <TextField placeholder="멘토 교사님의 피드백을 입력하세요." />
+      <TeacherType m={20}>담당 교사 피드백</TeacherType>
+      <TextField placeholder="담당 교사님의 피드백을 입력하세요." />
     </MainBox>
   );
 };
@@ -267,6 +276,37 @@ const SkillBox = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+`;
+
+const TextField = styled.textarea`
+  border: none;
+  width: 840px;
+  height: 400px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: var(
+    --gray-scale-gray-scale-700,
+    #fff
+  ); /* Adjust or replace this line */
+  resize: none;
+  margin-top: 10px;
+  position: relative;
+
+  &::placeholder {
+    position: absolute;
+    top: 17px; /* Adjust as needed */
+    left: 21px;
+  }
+`;
+
+const TeacherType = styled.div`
+  color: #444;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: ${(props) => `${props.m}px`};
 `;
 
 export default Report;
