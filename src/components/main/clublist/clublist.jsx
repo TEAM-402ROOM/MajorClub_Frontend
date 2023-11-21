@@ -1,64 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const List = () => {
+const List = ({ state, value }) => {
   return (
-    <ListBigBox>
-      <ListSauceBox>
-        <ClubLogoBox>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-XQ-rJia-4eigH2Xv8OYXqRSQk0IYDc0sfA&usqp=CAU" />
-          </div>
-        </ClubLogoBox>
-        <ClubName>outsert</ClubName>
-        <ClubIntroduce>
-          교내 스마트 학생 관리 서비스 개발팀 인서트입니다. 학생들의 불편함을
-        </ClubIntroduce>
-      </ListSauceBox>
-      <ListSauceBox>
-        <ClubLogoBox>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-XQ-rJia-4eigH2Xv8OYXqRSQk0IYDc0sfA&usqp=CAU" />
-          </div>
-        </ClubLogoBox>
-        <ClubName>outsert</ClubName>
-        <ClubIntroduce>
-          교내 스마트 학생 관리 서비스 개발팀 인서트입니다. 학생들의 불편함을
-        </ClubIntroduce>
-      </ListSauceBox>
-      <ListSauceBox>
-        <ClubLogoBox>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-XQ-rJia-4eigH2Xv8OYXqRSQk0IYDc0sfA&usqp=CAU" />
-          </div>
-        </ClubLogoBox>
-        <ClubName>outsert</ClubName>
-        <ClubIntroduce>
-          교내 스마트 학생 관리 서비스 개발팀 인서트입니다. 학생들의 불편함을
-        </ClubIntroduce>
-      </ListSauceBox>
-      <ListSauceBox>
-        <ClubLogoBox>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-XQ-rJia-4eigH2Xv8OYXqRSQk0IYDc0sfA&usqp=CAU" />
-          </div>
-        </ClubLogoBox>
-        <ClubName>outsert</ClubName>
-        <ClubIntroduce>
-          교내 스마트 학생 관리 서비스 개발팀 인서트입니다. 학생들의 불편함을
-        </ClubIntroduce>
-      </ListSauceBox>
-      <ListSauceBox>
-        <ClubLogoBox>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-XQ-rJia-4eigH2Xv8OYXqRSQk0IYDc0sfA&usqp=CAU" />
-          </div>
-        </ClubLogoBox>
-        <ClubName>outsert</ClubName>
-        <ClubIntroduce>
-          교내 스마트 학생 관리 서비스 개발팀 인서트입니다. 학생들의 불편함을
-        </ClubIntroduce>
-      </ListSauceBox>
+    <ListBigBox
+      onClick={() => {
+        const newModalState = [...value];
+        newModalState[0] = true;
+        state(newModalState);
+      }}
+    >
       <ListSauceBox>
         <ClubLogoBox>
           <div style={{ display: "flex", justifyContent: "center" }}>
