@@ -18,7 +18,7 @@ const Application = () => {
       <FormTitle>단가 ( 개당 가격 )</FormTitle>
       <FormInput placeholder="단가 입력" type="number" />
       <FormTitle>비고</FormTitle>
-      <FormArea placeholder="규격과 신청교사등 입력해주세요" />
+      <FormArea placeholder="규격 또는 참고사항을 입력해주세요" />
       <Column>
         <FinishLast>
           ‘리액트를 다루는 기술’ <span style={{ color: "red" }}>3</span>개를 총
