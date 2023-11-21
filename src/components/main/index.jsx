@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Dday from "./dday/dday";
 import Announcement from "./announcement/announcement";
+import ClubList from "./clublist/clublist";
 
 const Main = () => {
   return (
@@ -14,6 +15,8 @@ const Main = () => {
           .slice(0, 3)
           .map((splitKeyword) => <Announcement />)} */}
       <Announcement />
+      <MenuText>동아리 목록</MenuText>
+      <ClubList />
     </Box>
   );
 };
@@ -21,6 +24,7 @@ const Main = () => {
 const Box = styled.div`
   width: 1086.692px;
   margin: auto;
+  padding-top: 27px;
 `;
 
 const MenuText = styled.div`
