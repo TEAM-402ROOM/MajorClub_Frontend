@@ -2,11 +2,13 @@ import styled from "styled-components";
 import Dday from "./dday/dday";
 import Announcement from "./announcement/announcement";
 import ClubList from "./clublist/clublist";
+import React, { useState } from "react";
 
 const Main = () => {
+  const [modal, setModal] = useState([false, false, false]);
   return (
     <Box>
-      <Dday />
+      <Dday state={setModal} />
       <MenuText>공지사항</MenuText>
       {/* {props.keyword !== "" &&
         props.keyword
