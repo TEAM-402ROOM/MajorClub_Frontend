@@ -1,9 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const Club = () => {
+const Club = ({ state, value }) => {
   return (
-    <Page>
+    <Page
+      onClick={() => {
+        const newModalState = [...value];
+        newModalState[0] = false;
+        state(newModalState);
+      }}
+    >
       <ClubListTool></ClubListTool>
     </Page>
   );
