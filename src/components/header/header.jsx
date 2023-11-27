@@ -3,12 +3,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LogoIcon, AlertIcon } from "../../assets/index";
 
-const Header = () => {
+const Header = ({ state }) => {
   return (
     <Column>
       <HeaderGap>
         <LinkTo to="/">
-          <LogoIcon width={10} height={10} />
+          <LogoIcon />
         </LinkTo>
         <LinkTo to="/a">
           <HeaderText>홈</HeaderText>
@@ -24,6 +24,13 @@ const Header = () => {
         </LinkTo>
       </HeaderGap>
       <ProfileGap>
+        <div
+          onClick={() => {
+            state(true);
+          }}
+        >
+          로그인
+        </div>
         <AlertIcon width={10} height={10} />
         <UserProfile />
       </ProfileGap>
