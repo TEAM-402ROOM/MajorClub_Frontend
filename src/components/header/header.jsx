@@ -10,13 +10,13 @@ const Header = ({ state }) => {
         <LinkTo to="/">
           <LogoIcon />
         </LinkTo>
-        <LinkTo to="/a">
+        <LinkTo to="/">
           <HeaderText>홈</HeaderText>
         </LinkTo>
-        <LinkTo to="/b">
+        <LinkTo to="/report">
           <HeaderText>보고서</HeaderText>
         </LinkTo>
-        <LinkTo to="/c">
+        <LinkTo to="/application">
           <HeaderText>물품신청</HeaderText>
         </LinkTo>
         <LinkTo to="/d">
