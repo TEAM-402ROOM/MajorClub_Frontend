@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { LogoIcon, AlertIcon } from "../../assets/index";
 
-const Header = ({ state }) => {
+const Header = ({ state, alert }) => {
   return (
     <Column>
       <HeaderGap>
@@ -31,7 +31,13 @@ const Header = ({ state }) => {
         >
           로그인
         </div>
-        <AlertIcon width={10} height={10} />
+        <div
+          onClick={() => {
+            alert([true, false]);
+          }}
+        >
+          <AlertIcon width={10} height={10} />
+        </div>
         <UserProfile />
       </ProfileGap>
     </Column>
