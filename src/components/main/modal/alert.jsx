@@ -23,4 +23,4 @@ const AlertModatPage = styled.div`
   height: 740px;
 `;
 
-export default alertModal;
+export default AlertModal;

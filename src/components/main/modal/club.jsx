@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const Club = () => {
+const Club = ({ state }) => {
   return (
-    <Page>
+    <Page
+      onClick={() => {
+        state([false, false]);
+      }}
+    >
       <ClubListTool></ClubListTool>
     </Page>
   );

@@ -9,7 +9,7 @@ const Main = () => {
   const [modal, setModal] = useState([false, false]);
   return (
     <>
-      {modal[0] && <Club />}
+      {modal[0] && <Club state={setModal} />}
       <Box>
         <Dday />
         <MenuText>공지사항</MenuText>
