@@ -10,15 +10,26 @@ const AlertModal = ({ state }) => {
       <AlertModatPage ref={ref}>
         <PageName>내 알람 목록</PageName>
         <AlertBox>
-          <AlertBoxTitle>
-            박민하 선생님이 프로젝트 계획서에 메세지를 남겼어요.
-          </AlertBoxTitle>
-          <AlertBoxDay>2023.11.08. 4일 전</AlertBoxDay>
+          <Row>
+            <div>
+              <AlertBoxTitle>
+                박민하 선생님이 프로젝트 계획서에 메세지를 남겼어요.
+              </AlertBoxTitle>
+              <AlertBoxDay>2023.11.08. 4일 전</AlertBoxDay>
+            </div>
+            <SeeDetail>자세히 보기</SeeDetail>
+          </Row>
         </AlertBox>
       </AlertModatPage>
     </Page>
   );
 };
+
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const Page = styled.div`
   position: fixed;
@@ -53,6 +64,11 @@ const AlertBox = styled.div`
   height: 61px;
   flex-shrink: 0;
   padding: 20px;
+  border-top: 2px solid #f2f3f7;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
 `;
 
 const AlertBoxTitle = styled.div`
@@ -68,6 +84,18 @@ const AlertBoxTitle = styled.div`
 const AlertBoxDay = styled.div`
   color: #000;
   text-align: start;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
+const SeeDetail = styled.div`
+  cursor: pointer;
+
+  color: #000;
+  text-align: center;
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
