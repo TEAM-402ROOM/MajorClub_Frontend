@@ -1,39 +1,30 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import Logo from "../../../assets/img/logo";
 import { BsmIcon } from "../../../assets";
 import { Cookies } from "react-cookie";
 import CustomAxios from "../../../axios/customAxios";
-
-axios.defaults.withCredentials = true;
+import { useOutsideClick } from "../../../hooks/useOutsideClick";
 
 const LoginModal = ({ state }) => {
   const isLogin = async () => {
     try {
       console.log("로그인중");
-      const response = await CustomAxios.post("api/user/login", {
-        userId: user.id,
-        password: user.pw,
-      });
+      const response = await CustomAxios.post("api/user/login", {});
       // 성공적으로 로그인한 경우의 처리
       console.log("성공");
-      setIsState((prev) => ({
-        ...prev,
-        popup: false,
-      }));
       return response.data;
     } catch (error) {
       console.error("로그인 오류", error);
     }
   };
-  const cookie = new cookie();
+
+  const ref = useRef();
+  useOutsideClick(ref, () => state(false));
+
   return (
-    <Page
-      onClick={() => {
-        state(false);
-      }}
-    >
-      <LoginModalPage>
+    <Page>
+      <LoginModalPage ref={ref}>
         <div>
           <div
             style={{
