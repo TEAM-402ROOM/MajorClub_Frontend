@@ -1,25 +1,34 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
+import Detail from "./aldetail";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
 
 const AlertModal = ({ state }) => {
+  const [type, setType] = useState(true);
   const ref = useRef();
   useOutsideClick(ref, () => state([false, false]));
   return (
     <Page>
       <AlertModatPage ref={ref}>
-        <PageName>내 알람 목록</PageName>
-        <AlertBox>
-          <Row>
-            <div>
-              <AlertBoxTitle>
-                박민하 선생님이 프로젝트 계획서에 메세지를 남겼어요.
-              </AlertBoxTitle>
-              <AlertBoxDay>2023.11.08. 4일 전</AlertBoxDay>
-            </div>
-            <SeeDetail>자세히 보기</SeeDetail>
-          </Row>
-        </AlertBox>
+        {type && (
+          <>
+            <PageName>내 알람 목록</PageName>
+            <AlertBox>
+              <Row>
+                <div>
+                  <AlertBoxTitle>
+                    박민하 선생님이 프로젝트 계획서에 메세지를 남겼어요.
+                  </AlertBoxTitle>
+                  <AlertBoxDay>2023.11.08. 4일 전</AlertBoxDay>
+                </div>
+                <SeeDetail onClick={() => setType(false)}>
+                  자세히 보기
+                </SeeDetail>
+              </Row>
+            </AlertBox>
+          </>
+        )}
+        {!type && <Detail />}
       </AlertModatPage>
     </Page>
   );
@@ -95,7 +104,6 @@ const SeeDetail = styled.div`
   cursor: pointer;
 
   color: #000;
-  text-align: center;
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
