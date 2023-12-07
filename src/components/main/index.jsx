@@ -3,13 +3,15 @@ import Dday from "./dday/dday";
 import Announcement from "./announcement/announcement";
 import ClubList from "./clublist/clublist";
 import Club from "./modal/club";
+import Alert from "./modal/alert";
 import React, { useState } from "react";
 
 const Main = () => {
   const [modal, setModal] = useState([false, false]);
   return (
     <>
-      {modal[0] && <Club />}
+      {modal[0] && <Club state={setModal} value={modal} />}
+      {modal[1] && <Alert state={setModal} />}
       <Box>
         <Dday />
         <MenuText>공지사항</MenuText>
@@ -22,13 +24,6 @@ const Main = () => {
         <Announcement />
         <MenuText>동아리 목록</MenuText>
         <ClubList state={setModal} value={modal} />
-        <button
-          onClick={() => {
-            console.log(modal);
-          }}
-        >
-          test
-        </button>
       </Box>
     </>
   );
