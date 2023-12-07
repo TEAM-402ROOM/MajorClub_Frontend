@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
+import { useOutsideClick } from "../../../hooks/useOutsideClick";
 
 const AlertModal = ({ state }) => {
+  const ref = useRef();
+  useOutsideClick(ref, () => state([false, false]));
   return (
-    <Page
-      onClick={() => {
-        state([false, false]);
-      }}
-    >
-      <AlertModatPage>
+    <Page>
+      <AlertModatPage ref={ref}>
         <PageName>내 알람 목록</PageName>
         <AlertBox>
           <AlertBoxTitle>
