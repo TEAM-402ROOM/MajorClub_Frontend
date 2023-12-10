@@ -12,7 +12,7 @@ const Main = () => {
 
   const urlSearchParams = new URLSearchParams(window.location.search);
   const token = urlSearchParams.get("code");
-  localStorage.setItem("firstToken", token);
+  console.log(token);
 
   useLayoutEffect(() => {
     const fetchData = async () => {
