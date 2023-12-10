@@ -2,15 +2,39 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Detail from "./aldetail";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
+import { CustomAxios } from "../../../axios/customAxios";
 
 const SendModal = ({ state }) => {
   const ref = useRef();
   useOutsideClick(ref, () => state(false));
 
   const [searchValue, setSearchValue] = useState(""); // 1. 상태 추가
-
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const handleInputChange = (e) => {
     setSearchValue(e.target.value); // 2. 상태 업데이트
+  };
+
+  const SendAlert = async () => {
+    console.log("Sending alert");
+    try {
+      const response = await CustomAxios.post(
+        "/notice",
+        {
+          toWho: searchValue,
+          subject: title,
+          content: content,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // 여기에 토큰 변수를 넣어주세요.
+          },
+        }
+      );
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -24,21 +48,24 @@ const SendModal = ({ state }) => {
         />
         <Row>
           <SendedName>2121이일이</SendedName>
-          <SendedName>2121이일이</SendedName>
         </Row>
         <Title>알람 제목</Title>
         <TextArea
           height={"49.385px"}
           isAlightCenter={true}
           placeholder="제목을 입력해주세요..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <Title>알람 내용</Title>
         <TextArea
           height={"336.491px;"}
           placeholder="이야기할 내용을 적어주세요..."
           isAlightCenter={false}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
         />
-        <SendButton>전송하기</SendButton>
+        <SendButton onClick={() => SendAlert()}>전송하기</SendButton>
       </AlertModatPage>
     </Page>
   );

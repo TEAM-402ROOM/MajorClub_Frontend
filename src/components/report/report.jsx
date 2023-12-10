@@ -1,12 +1,64 @@
 import styled from "styled-components";
 import React, { useState } from "react";
+import { CustomAxios } from "../../axios/customAxios";
 import Member from "./member/member";
+import dayjs from "dayjs";
 
 const Report = () => {
   const members = Array.from({ length: 10 }, (_, index) => index);
   const [skillInput, setSkillInput] = useState("");
   const [skill, setSkill] = useState([]);
   const [goldClub, setGold] = useState([{ id: 1, value: "" }]);
+  const [post, setPost] = useState([
+    { name: "subject", value: "" },
+    { name: "progress", value: "" },
+    { name: "solutions", value: "" },
+    { name: "Mentor", value: "" },
+    { name: "Teacher", value: "" },
+  ]);
+
+  const PostReport = async () => {
+    console.log("클릭");
+    try {
+      console.log("send");
+      var now = dayjs();
+      const response = await CustomAxios.post(
+        "/report",
+        {
+          subject: post.find((item) => item.name === "subject").value,
+          goals: goldClub.map((item) => item.value),
+          techStacks: skill,
+          progress: post.find((item) => item.name === "progress").value,
+          solutions: post.find((item) => item.name === "solutions").value,
+          feedbackFromMentor: post.find((item) => item.name === "Mentor").value,
+          feedbackFromTeacher: post.find((item) => item.name === "Teacher")
+            .value,
+          year: parseInt(now.format("y"), 10),
+          month: parseInt(now.format("m"), 10),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // 여기에 토큰 변수를 넣어주세요.
+          },
+        }
+      );
+      // 성공적으로 로그인한 경우의 처리
+      console.log("성공");
+      return response.data;
+    } catch (error) {
+      console.error("보내기 오류", error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    // name이 "Teacher"인 경우에만 post 상태 업데이트
+    setPost((prevPost) =>
+      prevPost.map((item) => (item.name === name ? { ...item, value } : item))
+    );
+    console.log(post);
+  };
 
   const handleInputKeyDown = (e) => {
     if (e.key === "Enter" && skillInput.trim() !== "") {
@@ -57,7 +109,11 @@ const Report = () => {
         </MemberGrid>
       </ClubInfo>
       <ReportFrom>서비스 주제</ReportFrom>
-      <InputBox placeholder="스마트 학생 관리 웹/앱 서비스" />
+      <InputBox
+        placeholder="스마트 학생 관리 웹/앱 서비스"
+        name="subject"
+        onChange={handleInputChange}
+      />
       <ReportFrom>서비스 목표</ReportFrom>
       {goldClub.map(({ id, value }, index) => (
         <InputBox
@@ -82,15 +138,31 @@ const Report = () => {
         ))}
       </ColumnSkill>
       <ReportFrom>프로젝트 진행사항</ReportFrom>
-      <TextField placeholder="진행사항을 입력해주세요" />
+      <TextField
+        placeholder="진행사항을 입력해주세요"
+        name="progress"
+        onChange={handleInputChange}
+      />
       <ReportFrom>발생헀던 문제 혹은 어려웠던 점 또는 해결 방안</ReportFrom>
-      <TextField placeholder="발생한 문제 || 어려운점 && 해결방안" />
+      <TextField
+        placeholder="발생한 문제 || 어려운점 && 해결방안"
+        name="solutions"
+        onChange={handleInputChange}
+      />
       <ReportFrom>피드백 받은 내용</ReportFrom>
       <TeacherType m={29}>멘토 교사 피드백</TeacherType>
-      <TextField placeholder="멘토 교사님의 피드백을 입력하세요." />
+      <TextField
+        placeholder="멘토 교사님의 피드백을 입력하세요."
+        name="Mentor"
+        onChange={handleInputChange}
+      />
       <TeacherType m={20}>담당 교사 피드백</TeacherType>
-      <TextField placeholder="담당 교사님의 피드백을 입력하세요." />
-      <PostButton>제출하기</PostButton>
+      <TextField
+        placeholder="담당 교사님의 피드백을 입력하세요."
+        name="Teacher"
+        onChange={handleInputChange}
+      />
+      <PostButton onClick={() => PostReport()}>제출하기</PostButton>
     </MainBox>
   );
 };

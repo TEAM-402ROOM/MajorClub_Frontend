@@ -4,10 +4,41 @@ import Announcement from "./announcement/announcement";
 import ClubList from "./clublist/clublist";
 import Club from "./modal/club";
 import Alert from "./modal/alert";
-import React, { useState } from "react";
+import { CustomAxios } from "../../axios/customAxios";
+import React, { useState, useLayoutEffect } from "react";
 
 const Main = () => {
   const [modal, setModal] = useState([false, false]);
+
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const token = urlSearchParams.get("code");
+
+  useLayoutEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log("로그인 중");
+
+        const getIDToken = await CustomAxios.post("/auth/bsm", null, {
+          params: { code: token },
+        });
+        console.log("콘솔" + getIDToken);
+        localStorage.setItem("accessToken", getIDToken.access_token);
+        localStorage.setItem("refreshToken", getIDToken.refresh_token);
+
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // 여기에 토큰 변수를 넣어주세요.
+        //   },
+        // }
+      } catch (error) {
+        console.error("로그인 오류", error);
+      }
+    };
+    if (token !== null) {
+      fetchData();
+    }
+  }, []);
+
   return (
     <>
       {modal[0] && <Club state={setModal} value={modal} />}
