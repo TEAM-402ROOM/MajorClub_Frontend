@@ -22,6 +22,41 @@ const Result = () => {
             </SeeBox>
           </RowBox>
         </Row>
+        <div style={{ height: "20px" }} />
+        <ReportBox>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "42px",
+            }}
+          >
+            <ReportNum>8</ReportNum>
+            <div>
+              <ReportTitle>DA:ON 8월 계획 보고서</ReportTitle>
+              <ReportTMI>2023.11.09. 오후 08:32 · 조우성 학생</ReportTMI>
+            </div>
+          </div>
+          <ReportCheckButton>확인하기</ReportCheckButton>
+        </ReportBox>
+        <ReportBox>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "42px",
+            }}
+          >
+            <ReportNum>8</ReportNum>
+            <div>
+              <ReportTitle>DA:ON 8월 계획 보고서</ReportTitle>
+              <ReportTMI>2023.11.09. 오후 08:32 · 조우성 학생</ReportTMI>
+            </div>
+          </div>
+          <ReportCheckButton>확인하기</ReportCheckButton>
+        </ReportBox>
       </Content>
     </Page>
   );
@@ -85,4 +120,57 @@ const PageTitle = styled.div`
   line-height: normal;
 `;
 
-const ReportBox = styled.div``;
+const ReportBox = styled.div`
+  width: 834px;
+  height: 100px;
+  padding: 0px 40px;
+  flex-shrink: 0;
+  border-top: 2px solid #f2f3f7;
+  background: #fff;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ReportNum = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 16px; /* 50% */
+  letter-spacing: -0.32px;
+`;
+
+const ReportTitle = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px; /* 61.538% */
+  letter-spacing: -0.26px;
+  margin-bottom: 15px;
+`;
+
+const ReportTMI = styled.div`
+  color: #666;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 88.889% */
+  letter-spacing: -0.18px;
+`;
+
+const ReportCheckButton = styled.div`
+  cursor: pointer;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 88.889% */
+  letter-spacing: -0.18px;
+`;
