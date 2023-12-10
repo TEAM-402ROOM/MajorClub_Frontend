@@ -1,12 +1,32 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import Detail from "./aldetail";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
+import { CustomAxios } from "../../../axios/customAxios";
 
 const AlertModal = ({ state }) => {
   const [type, setType] = useState(true);
   const ref = useRef();
   useOutsideClick(ref, () => state([false, false]));
+
+  const GetNotice = async () => {
+    const token = localStorage.getItem("accessToken");
+    try {
+      const response = await CustomAxios.get("/notice", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useLayoutEffect(() => {
+    GetNotice();
+  });
+
   return (
     <Page>
       <AlertModatPage ref={ref}>

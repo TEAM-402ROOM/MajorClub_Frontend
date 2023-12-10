@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const CustomAxios = axios.create({
-  baseURL: "",
+  baseURL: "http://api.bcms.kro.kr/api",
   withCredentials: true,
 });
 
@@ -25,5 +25,3 @@ CustomAxios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-export default CustomAxios;

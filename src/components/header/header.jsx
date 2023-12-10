@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { LogoIcon, AlertIcon } from "../../assets/index";
 
-const Header = ({ state, alert }) => {
+const Header = ({ state, alert, send }) => {
   return (
     <Column>
       <HeaderGap>
@@ -19,8 +19,14 @@ const Header = ({ state, alert }) => {
         <LinkTo to="/application">
           <HeaderText>물품신청</HeaderText>
         </LinkTo>
-        <LinkTo to="/d">
-          <HeaderText>알람 보내기</HeaderText>
+        <LinkTo to="/">
+          <HeaderText
+            onClick={() => {
+              send(true);
+            }}
+          >
+            알람 보내기
+          </HeaderText>
         </LinkTo>
       </HeaderGap>
       <ProfileGap>
