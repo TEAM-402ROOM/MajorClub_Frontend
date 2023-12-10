@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const CustomAxios = axios.create({
-  baseURL: "",
+  baseURL: "https://api.bcms.kro.kr/api",
   withCredentials: true,
 });
 

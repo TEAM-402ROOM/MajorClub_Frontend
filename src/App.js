@@ -4,16 +4,19 @@ import "./reset.css";
 import LoginModal from "./components/main/modal/login";
 import { Header, Main, Report, Application, Result } from "./components/index";
 import Alert from "./components/main/modal/alert";
+import Send from "./components/main/modal/send";
 
 const App = () => {
   const [login, setLogin] = useState(false);
   const [alert, setAlert] = useState([false, false]);
+  const [send, setSend] = useState(false);
   return (
     <div className="App">
       <BrowserRouter>
         {login && <LoginModal state={setLogin} />}
         {alert[0] && <Alert state={setAlert} />}
-        <Header state={setLogin} alert={setAlert} />
+        {send && <Send state={setSend} />}
+        <Header state={setLogin} alert={setAlert} send={setSend} />
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="/report" element={<Report />}></Route>
