@@ -38,6 +38,7 @@ const SendModal = ({ state }) => {
           placeholder="이야기할 내용을 적어주세요..."
           isAlightCenter={false}
         />
+        <SendButton>전송하기</SendButton>
       </AlertModatPage>
     </Page>
   );
@@ -71,6 +72,8 @@ const AlertModatPage = styled.div`
   background: #fff;
 
   padding: 37px;
+
+  overflow-y: scroll;
 `;
 
 const PageInfo = styled.div`
@@ -135,6 +138,31 @@ const TextArea = styled.textarea`
   margin-top: 10px;
   padding-left: 15px;
   padding-top: ${(props) => (props.isAlightCenter ? "" : "16px")};
+`;
+
+const SendButton = styled.div`
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 180px;
+  height: 44.571px;
+  flex-shrink: 0;
+
+  border-radius: 5px;
+  background: #000;
+
+  color: var(--gray-scale-gray-scale-700, #fff);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+  margin: auto;
+  margin-top: 32px;
 `;
 
 export default SendModal;
