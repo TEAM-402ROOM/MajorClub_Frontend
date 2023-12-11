@@ -16,14 +16,15 @@ const Main = () => {
   useLayoutEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("로그인 중");
+        console.log(token);
 
         const getIDToken = await CustomAxios.post("/auth/bsm", null, {
           params: { code: token },
         });
-        console.log("콘솔" + getIDToken);
-        localStorage.setItem("accessToken", getIDToken.access_token);
-        localStorage.setItem("refreshToken", getIDToken.refresh_token);
+
+        console.log("콘솔" + getIDToken.data.access_token);
+        localStorage.setItem("accessToken", getIDToken.data.access_token);
+        localStorage.setItem("refreshToken", getIDToken.data.refresh_token);
 
         // {
         //   headers: {

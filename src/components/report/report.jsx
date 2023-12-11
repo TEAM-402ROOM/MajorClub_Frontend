@@ -22,6 +22,7 @@ const Report = () => {
     try {
       console.log("send");
       var now = dayjs();
+      console.log(localStorage.getItem("accessToken"));
       const response = await CustomAxios.post(
         "/report",
         {
