@@ -1,27 +1,51 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useOutsideClick } from "../../../hooks/useOutsideClick";
 import styled from "styled-components";
 import Box from "../../../ui/clubBox";
+import { CustomAxios } from "../../../axios/customAxios";
 
-const Club = ({ state, value }) => {
+const Club = ({ state }) => {
+  const ref = useRef();
+  useOutsideClick(ref, () => state([false, false]));
+
+  const JoinClub = async () => {
+    try {
+      // localStorage에서 토큰을 가져오거나, 다른 방식으로 토큰을 얻어온다.
+      const accessToken = localStorage.getItem("accessToken");
+
+      const response = await CustomAxios.post(
+        "/clubs/join",
+        {
+          name: "김더미",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
-    <Page
-      onClick={() => {
-        const newModalState = [...value];
-        newModalState[0] = false;
-        state(newModalState);
-      }}
-    >
-      <ClubListTool>
+    <Page>
+      <ClubListTool ref={ref}>
         <Columns>
-          <ClubImage />
-          <div>
-            <ClubName>OutSert</ClubName>
-            <ClubInter>
-              안녕하세요 인서트입니다 줜공동아리 계획 보고서 작성 방법을
-              안내해드리는 서비스를 만드는 동아리를 만드는 팀을 만드는 사람을
-              만드는 마현우를 만드는 동아리입니다
-            </ClubInter>
-          </div>
+          <Row>
+            <ClubImage />
+            <div>
+              <ClubName>OutSert</ClubName>
+              <ClubInter>
+                안녕하세요 인서트입니다 줜공동아리 계획 보고서 작성 방법을
+                안내해드리는 서비스를 만드는 동아리를 만드는 팀을 만드는 사람을
+                만드는 마현우를 만드는 동아리입니다
+              </ClubInter>
+            </div>
+          </Row>
+          <JoinButton onClick={() => JoinClub()}>참여하기</JoinButton>
         </Columns>
         <UnderLine />
         <div style={{ marginLeft: "35px" }}>
@@ -34,6 +58,28 @@ const Club = ({ state, value }) => {
     </Page>
   );
 };
+
+const JoinButton = styled.div`
+  cursor: pointer;
+  width: 114.004px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--gray-scale-gray-scale-700, #fff);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  margin-right: 40px;
+`;
 
 const Grid = styled.div`
   display: grid;
@@ -53,8 +99,13 @@ const Page = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+`;
 const Columns = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
 `;
 

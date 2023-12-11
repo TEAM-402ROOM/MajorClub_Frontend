@@ -12,7 +12,6 @@ const Main = () => {
 
   const urlSearchParams = new URLSearchParams(window.location.search);
   const token = urlSearchParams.get("code");
-  console.log(token);
 
   useLayoutEffect(() => {
     const fetchData = async () => {
@@ -25,7 +24,7 @@ const Main = () => {
         console.log("콘솔" + getIDToken);
         localStorage.setItem("accessToken", getIDToken.access_token);
         localStorage.setItem("refreshToken", getIDToken.refresh_token);
-        window.location.href = "http://localhost:3000";
+
         // {
         //   headers: {
         //     Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // 여기에 토큰 변수를 넣어주세요.

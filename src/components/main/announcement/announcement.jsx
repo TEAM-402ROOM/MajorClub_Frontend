@@ -5,11 +5,7 @@ const Announcement = () => {
   return (
     <>
       <AnnBox>
-        <AnnTitle>ㅈ망했노</AnnTitle>
-        <AnnDay>2022.21.23</AnnDay>
-      </AnnBox>
-      <AnnBox>
-        <AnnTitle>ㅈ망했노</AnnTitle>
+        <AnnTitle>알람 제목</AnnTitle>
         <AnnDay>2022.21.23</AnnDay>
       </AnnBox>
     </>
