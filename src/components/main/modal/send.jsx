@@ -5,6 +5,13 @@ import { useOutsideClick } from "../../../hooks/useOutsideClick";
 import { CustomAxios } from "../../../axios/customAxios";
 
 const SendModal = ({ state }) => {
+  const people = [
+    "2222김철수",
+    "1111이희성",
+    "팀:outsert",
+    "팀:밤돌이로",
+    "2210누군가",
+  ];
   const ref = useRef();
   useOutsideClick(ref, () => state(false));
 
@@ -13,6 +20,14 @@ const SendModal = ({ state }) => {
   const [content, setContent] = useState("");
   const handleInputChange = (e) => {
     setSearchValue(e.target.value); // 2. 상태 업데이트
+  };
+
+  const filteredPeople = people.filter((person) =>
+    person.includes(searchValue)
+  );
+
+  const handleSelectPerson = (selectedPerson) => {
+    setSearchValue(selectedPerson);
   };
 
   const SendAlert = async () => {
@@ -46,9 +61,19 @@ const SendModal = ({ state }) => {
           value={searchValue} // 상태와 값을 연결
           onChange={handleInputChange} // onChange 핸들러 연결
         />
-        <Row>
-          <SendedName>2121이일이</SendedName>
-        </Row>
+        {/* 검색된 결과 표시 */}
+        {filteredPeople.length > 0 && (
+          <Row>
+            {filteredPeople.map((person, index) => (
+              <SendedName
+                key={index}
+                onClick={() => handleSelectPerson(person)}
+              >
+                {person}
+              </SendedName>
+            ))}
+          </Row>
+        )}
         <Title>알람 제목</Title>
         <TextArea
           height={"49.385px"}
