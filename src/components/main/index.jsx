@@ -9,6 +9,7 @@ import React, { useState, useLayoutEffect } from "react";
 
 const Main = () => {
   const [modal, setModal] = useState([false, false]);
+  const [notice, setNotice] = useState([]);
 
   const urlSearchParams = new URLSearchParams(window.location.search);
   const token = urlSearchParams.get("code");
@@ -17,18 +18,8 @@ const Main = () => {
     if (token !== null) {
       LoginPost();
     }
-    ClubGet();
     NoticeGet();
   }, []);
-
-  const ClubGet = async () => {
-    try {
-      const response = await CustomAxios.get("/club/list");
-      console.log("club" + response.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   const NoticeGet = async () => {
     try {
