@@ -6,8 +6,12 @@ const ClubBox = () => {
     <Colunms>
       <ClubImage />
       <div>
-        <ClubPosition>한남</ClubPosition>
+        <ClubPosition>팀장</ClubPosition>
         <ClubPeople>김준경</ClubPeople>
+      </div>
+      <div>
+        <ClubPosition>팀워</ClubPosition>
+        <ClubPeople>팍우빈</ClubPeople>
       </div>
     </Colunms>
   );
@@ -38,6 +42,7 @@ const ClubPosition = styled.div`
 
 const ClubPeople = styled.div`
   color: #000;
+  width: 60px;
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;

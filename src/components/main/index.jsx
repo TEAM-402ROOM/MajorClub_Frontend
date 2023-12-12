@@ -9,36 +9,50 @@ import React, { useState, useLayoutEffect } from "react";
 
 const Main = () => {
   const [modal, setModal] = useState([false, false]);
+  const [notice, setNotice] = useState([]);
 
   const urlSearchParams = new URLSearchParams(window.location.search);
   const token = urlSearchParams.get("code");
 
   useLayoutEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log(token);
-
-        const getIDToken = await CustomAxios.post("/auth/bsm", null, {
-          params: { code: token },
-        });
-
-        console.log("콘솔" + getIDToken.data.access_token);
-        localStorage.setItem("accessToken", getIDToken.data.access_token);
-        localStorage.setItem("refreshToken", getIDToken.data.refresh_token);
-
-        // {
-        //   headers: {
-        //     Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // 여기에 토큰 변수를 넣어주세요.
-        //   },
-        // }
-      } catch (error) {
-        console.error("로그인 오류", error);
-      }
-    };
     if (token !== null) {
-      fetchData();
+      LoginPost();
     }
+    NoticeGet();
   }, []);
+
+  const NoticeGet = async () => {
+    try {
+      const response = await CustomAxios.get("/notice", {
+        headers: { Authorization: "Bearer " + localStorage.getItem },
+      });
+      console.log("notice" + response.data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const LoginPost = async () => {
+    try {
+      console.log(token);
+
+      const getIDToken = await CustomAxios.post("/auth/bsm", null, {
+        params: { code: token },
+      });
+
+      console.log("콘솔" + getIDToken.data.access_token);
+      localStorage.setItem("accessToken", getIDToken.data.access_token);
+      localStorage.setItem("refreshToken", getIDToken.data.refresh_token);
+
+      // {
+      //   headers: {
+      //     Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // 여기에 토큰 변수를 넣어주세요.
+      //   },
+      // }
+    } catch (error) {
+      console.error("로그인 오류", error);
+    }
+  };
 
   return (
     <>
