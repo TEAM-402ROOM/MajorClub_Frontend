@@ -2,8 +2,8 @@ import styled from "styled-components";
 import Dday from "./dday/dday";
 import Announcement from "./announcement/announcement";
 import ClubList from "./clublist/clublist";
-import Club from "./modal/club";
-import Alert from "./modal/alert";
+import Club from "../../modal/club";
+import Alert from "../../modal/alert";
 import { CustomAxios } from "../../axios/customAxios";
 import React, { useState, useLayoutEffect } from "react";
 

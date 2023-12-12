@@ -104,9 +104,10 @@ const Report = () => {
         <UnderLine />
         <ClubMember>동아리 구성원</ClubMember>
         <MemberGrid>
-          {members.map((memberIndex) => (
-            <Member key={memberIndex} />
-          ))}
+          {/* {members.map((memberIndex) => ( */}
+          <Member name={"김준경"} type={"팀장"} />
+          <Member name={"팍우빈"} type={"팀원"} />
+          {/* ))} */}
         </MemberGrid>
       </ClubInfo>
       <ReportFrom>서비스 주제</ReportFrom>

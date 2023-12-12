@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Detail from "./aldetail";
-import { useOutsideClick } from "../../../hooks/useOutsideClick";
-import { CustomAxios } from "../../../axios/customAxios";
+import { useOutsideClick } from "../hooks/useOutsideClick";
+import { CustomAxios } from "../axios/customAxios";
 
 const SendModal = ({ state }) => {
   const people = [
@@ -11,6 +11,7 @@ const SendModal = ({ state }) => {
     "팀:outsert",
     "팀:밤돌이로",
     "2210누군가",
+    "모두",
   ];
   const ref = useRef();
   useOutsideClick(ref, () => state(false));

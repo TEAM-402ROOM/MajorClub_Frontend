@@ -84,8 +84,8 @@ const Application = () => {
       />
       <Column>
         <FinishLast>
-          ‘리액트를 다루는 기술’ <span style={{ color: "red" }}>3</span>개를 총
-          가격 <span style={{ color: "red" }}>126,000</span>
+          "미신청" <span style={{ color: "red" }}>0</span>개를 총 가격{" "}
+          <span style={{ color: "red" }}>0</span>
           원으로 물품을 신청할게요.
         </FinishLast>
       </Column>
