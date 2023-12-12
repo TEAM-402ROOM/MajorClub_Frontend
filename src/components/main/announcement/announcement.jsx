@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useState, useLayoutEffect } from "react";
 import styled from "styled-components";
+import { CustomAxios } from "../../../axios/customAxios";
 
 const Announcement = () => {
+  const [alert, setAlert] = useState([]);
+
+  useLayoutEffect(() => {
+    GetNotice();
+  });
+
+  const GetNotice = async () => {
+    const token = localStorage.getItem("accessToken");
+    try {
+      const response = await CustomAxios.get("/notice", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("알림" + response.data);
+      setAlert(response.data);
+    } catch (err) {
+      console.error("공지" + err);
+    }
+  };
+
   return (
     <>
       <AnnBox>
-        <AnnTitle>ㅈ망했노</AnnTitle>
-        <AnnDay>2022.21.23</AnnDay>
-      </AnnBox>
-      <AnnBox>
-        <AnnTitle>ㅈ망했노</AnnTitle>
+        <AnnTitle>아무튼 공지사항</AnnTitle>
         <AnnDay>2022.21.23</AnnDay>
       </AnnBox>
     </>

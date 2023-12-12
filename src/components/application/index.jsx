@@ -1,7 +1,39 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
+import { CustomAxios } from "../../axios/customAxios";
 
 const Application = () => {
+  const [name, setName] = useState("");
+  const [count, setCount] = useState(0);
+  const [url, setUrl] = useState("");
+  const [price, setprice] = useState(0);
+  const [usage, setUsage] = useState("");
+  const [etc, setEtc] = useState("");
+  const PostApplication = async () => {
+    console.log("Sending alert");
+    try {
+      const response = await CustomAxios.post(
+        "/application",
+        {
+          productName: name,
+          count: count,
+          url: url,
+          price: price,
+          usage: usage,
+          etc: etc,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // 여기에 토큰 변수를 넣어주세요.
+          },
+        }
+      );
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <MainPage>
       <PageTitle>📦 동아리 물품 신청</PageTitle>
@@ -10,24 +42,55 @@ const Application = () => {
       </PageSubTitle>
       <FormTitle>물품 이름 또는 책 제목</FormTitle>
       <Column>
-        <FormInputS placeholder="ex ) 라떼판다 델타 3" />
-        <FormInputSS value={1} type="number" />
+        <FormInputS
+          placeholder="ex ) 라떼판다 델타 3"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+        <FormInputSS
+          value={count}
+          type="number"
+          onChange={(e) => {
+            setCount(e.target.value);
+          }}
+        />
       </Column>
       <FormTitle>구매 사이트</FormTitle>
-      <FormInput placeholder="https://coupang.com/ ..." />
+      <FormInput
+        placeholder="https://coupang.com/ ..."
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+      />
       <FormTitle>단가 ( 개당 가격 )</FormTitle>
-      <FormInput placeholder="단가 입력" type="number" />
+      <FormInput
+        placeholder="단가 입력"
+        type="number"
+        value={price}
+        onChange={(e) => setprice(e.target.value)}
+      />
+      <FormTitle>사용 용도</FormTitle>
+      <FormArea
+        placeholder="온프레미스 서버 구축을 통한 리눅스와 도커 & 쿠버네티스 학습 및 클라우드 비용 절감을 위하..."
+        value={usage}
+        onChange={(e) => setUsage(e.target.value)}
+      />{" "}
       <FormTitle>비고</FormTitle>
-      <FormArea placeholder="규격 또는 참고사항을 입력해주세요" />
+      <FormArea
+        placeholder="규격 또는 참고사항을 입력해주세요"
+        value={etc}
+        onChange={(e) => setEtc(e.target.value)}
+      />
       <Column>
         <FinishLast>
-          ‘리액트를 다루는 기술’ <span style={{ color: "red" }}>3</span>개를 총
-          가격 <span style={{ color: "red" }}>126,000</span>
+          "미신청" <span style={{ color: "red" }}>0</span>개를 총 가격{" "}
+          <span style={{ color: "red" }}>0</span>
           원으로 물품을 신청할게요.
         </FinishLast>
       </Column>
       <CheckF>해당 사항이 요구 사항과 일치하며, 이를 확인했어요</CheckF>
-      <SubmitButton>제출하기</SubmitButton>
+      <SubmitButton onClick={() => PostApplication()}>제출하기</SubmitButton>
     </MainPage>
   );
 };

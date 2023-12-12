@@ -1,26 +1,32 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { LogoIcon, AlertIcon } from "../../assets/index";
 
-const Header = ({ state }) => {
+const Header = ({ state, alert, send }) => {
   return (
     <Column>
       <HeaderGap>
         <LinkTo to="/">
           <LogoIcon />
         </LinkTo>
-        <LinkTo to="/a">
+        <LinkTo to="/">
           <HeaderText>홈</HeaderText>
         </LinkTo>
-        <LinkTo to="/b">
+        <LinkTo to="/report">
           <HeaderText>보고서</HeaderText>
         </LinkTo>
-        <LinkTo to="/c">
+        <LinkTo to="/application">
           <HeaderText>물품신청</HeaderText>
         </LinkTo>
-        <LinkTo to="/d">
-          <HeaderText>알람 보내기</HeaderText>
+        <LinkTo to="/">
+          <HeaderText
+            onClick={() => {
+              send(true);
+            }}
+          >
+            알람 보내기
+          </HeaderText>
         </LinkTo>
       </HeaderGap>
       <ProfileGap>
@@ -31,7 +37,13 @@ const Header = ({ state }) => {
         >
           로그인
         </div>
-        <AlertIcon width={10} height={10} />
+        <div
+          onClick={() => {
+            alert([true, false]);
+          }}
+        >
+          <AlertIcon width={10} height={10} />
+        </div>
         <UserProfile />
       </ProfileGap>
     </Column>

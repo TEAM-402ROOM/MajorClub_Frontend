@@ -1,21 +1,28 @@
 import React, { Component, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./reset.css";
-import LoginModal from "./components/main/modal/login";
-import { Header, Main, Report, Application } from "./components/index";
+import LoginModal from "./modal/login";
+import { Header, Main, Report, Application, Result } from "./components/index";
+import Alert from "./modal/alert";
+import Send from "./modal/send";
 
 const App = () => {
   const [login, setLogin] = useState(false);
+  const [alert, setAlert] = useState([false, false]);
+  const [send, setSend] = useState(false);
   return (
     <div className="App">
       <BrowserRouter>
         {login && <LoginModal state={setLogin} />}
-        <Header state={setLogin} />
+        {alert[0] && <Alert state={setAlert} />}
+        {send && <Send state={setSend} />}
+        <Header state={setLogin} alert={setAlert} send={setSend} />
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="/report" element={<Report />}></Route>
           <Route path="/application" element={<Application />}></Route>
-          <Route path="*" element={<>404</>}></Route>
+          <Route path="/result" element={<Result />}></Route>
+          <Route path="*" element={<Main />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

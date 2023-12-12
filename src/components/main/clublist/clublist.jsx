@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
+import { CustomAxios } from "../../../axios/customAxios";
 
 const List = ({ state, value }) => {
+  const [club, setClub] = useState();
+  useLayoutEffect(() => {
+    ClubGet();
+  }, []);
+
+  const ClubGet = async () => {
+    try {
+      const response = await CustomAxios.get("/club/list");
+      console.log("club" + response.data);
+      setClub(response.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
-    <ListBigBox
-      onClick={() => {
-        const newModalState = [...value];
-        newModalState[0] = true;
-        state(newModalState);
-      }}
-    >
-      <ListSauceBox>
+    <ListBigBox>
+      <ListSauceBox
+        onClick={() => {
+          const newModalState = [...value];
+          newModalState[0] = true;
+          state(newModalState);
+        }}
+      >
         <ClubLogoBox>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-XQ-rJia-4eigH2Xv8OYXqRSQk0IYDc0sfA&usqp=CAU" />
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-XQ-rJia-4eigH2Xv8OYXqRSQk0IYDc0sfA&usqp=CAU"
+              alt="Club Logo"
+            />
           </div>
         </ClubLogoBox>
         <ClubName>outsert</ClubName>

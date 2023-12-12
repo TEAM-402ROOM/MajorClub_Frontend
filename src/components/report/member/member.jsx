@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const MemberProfil = () => {
+const MemberProfil = ({ name, type }) => {
   return (
     <ProfilBox>
       <MemImg />
       <div>
-        <Position>한남</Position>
-        <Name>화남준경</Name>
+        <Position>{type}</Position>
+        <Name>{name}</Name>
       </div>
     </ProfilBox>
   );
@@ -24,7 +24,7 @@ const ProfilBox = styled.div`
 `;
 
 const MemImg = styled.div`
-  background-image: url("https://cdn.imweb.me/upload/S202008179a8a184fd9517/282d95f6221dd.jpg");
+  background-image: url("");
   background-position: center; /* 배경 이미지를 가운데로 정렬 */
   background-size: 32px 32px; /* 배경 이미지의 크기를 32x32로 조절 */
   width: 32px;
@@ -33,6 +33,7 @@ const MemImg = styled.div`
   background-repeat: no-repeat;
   fill: #d9d9d9;
   border-radius: 50%;
+  background-color: #000;
 `;
 
 const Position = styled.div`
