@@ -1,10 +1,10 @@
 import React, { Component, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./reset.css";
-import LoginModal from "./components/main/modal/login";
+import LoginModal from "./modal/login";
 import { Header, Main, Report, Application, Result } from "./components/index";
-import Alert from "./components/main/modal/alert";
-import Send from "./components/main/modal/send";
+import Alert from "./modal/alert";
+import Send from "./modal/send";
 
 const App = () => {
   const [login, setLogin] = useState(false);
