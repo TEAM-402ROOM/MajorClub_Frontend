@@ -40,23 +40,6 @@ const Result = () => {
           </div>
           <ReportCheckButton>확인하기</ReportCheckButton>
         </ReportBox>
-        <ReportBox>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "42px",
-            }}
-          >
-            <ReportNum>8</ReportNum>
-            <div>
-              <ReportTitle>DA:ON 8월 계획 보고서</ReportTitle>
-              <ReportTMI>2023.11.09. 오후 08:32 · 조우성 학생</ReportTMI>
-            </div>
-          </div>
-          <ReportCheckButton>확인하기</ReportCheckButton>
-        </ReportBox>
       </Content>
     </Page>
   );
