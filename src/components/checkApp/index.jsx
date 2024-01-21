@@ -4,7 +4,8 @@ import * as S from "./style";
 const CheckApplication = () => {
   return (
     <S.PageBox>
-      <S.PageTitle>📦 동아리 물품 확인</S.PageTitle>
+      <S.PageTitle>📦 물품 신청 현황</S.PageTitle>
+      <S.Row></S.Row>
       {/* 디자인 수정 해야함 임시 설정 */}
       <S.ColnmnBox>
         <S.ColnmnContent>USB TO C</S.ColnmnContent>

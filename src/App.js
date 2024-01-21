@@ -34,8 +34,8 @@ const App = () => {
             path="/check/applications"
             element={<CheckApplication />}
           ></Route>
-          <Route path="*" element={<Main />}></Route>
           <Route path="/attendance" element={<Attendance />}></Route>
+          <Route path="*" element={<Main />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
