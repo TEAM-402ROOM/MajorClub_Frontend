@@ -9,6 +9,7 @@ import {
   Application,
   Result,
   CheckApplication,
+  Attendance,
 } from "./components/index";
 import Alert from "./modal/alert";
 import Send from "./modal/send";
@@ -34,6 +35,7 @@ const App = () => {
             element={<CheckApplication />}
           ></Route>
           <Route path="*" element={<Main />}></Route>
+          <Route path="/attendance" element={<Attendance />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
